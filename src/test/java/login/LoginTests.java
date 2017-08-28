@@ -11,7 +11,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 /**
  * Created by pc on 27.08.2017.
  */
-public class SuccessfullLogin extends BaseTest {
+public class LoginTests extends BaseTest {
     String validLogin = "test_user@test.com";
     String validPassword = "Qwerty123";
     String invalidPassword = randomAlphanumeric(8);
