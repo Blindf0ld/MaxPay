@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.concurrent.TimeUnit;
-
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -39,13 +38,13 @@ public class LoginPage extends BasePage {
 
     public WelcomePage loginToApp(String login, String password) throws InterruptedException {
         driver.get("https://my-sandbox.maxpay.com/#/signin");
-        driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.MILLISECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.MILLISECONDS);
         $(loginField).shouldBe(visible).click();
         $(loginField).setValue(login);
         $(passwordField).shouldBe(visible).click();
         $(passwordField).setValue(password);
-        $(submitButton).click();
-        driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.SECONDS);
+        $(submitButton).shouldBe(exist).click();
+        //driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.SECONDS);
         return new WelcomePage(driver);
     }
 
