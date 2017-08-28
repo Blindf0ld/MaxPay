@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
         WelcomePage welcomepage = loginPage.loginToApp(validLogin, validPassword);
         Assert.assertTrue(welcomepage.isSideBarDisplayed(), "Side Bar is not displayed");
         loginPage = welcomepage.logout();
-        Assert.assertTrue(loginPage.isForgotPasswordButtonDisplaye(), "Login Page is not displayed");
+        Assert.assertTrue(loginPage.isForgotPasswordButtonDisplayed(), "Login Page is not displayed");
     }
 
     @Test

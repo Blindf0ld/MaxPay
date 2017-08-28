@@ -25,7 +25,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login-password")
     WebElement passwordField;
 
-    @FindBy(xpath = "//button[@type=\"submit\"]")
+    @FindBy(xpath = "//form/div[5]/div/button[@type=\"submit\"]")
     WebElement submitButton;
 
     @FindBy(css = ".btn.btn-block.btn-primary.mheight-40.text-uppercase.ng-binding")
@@ -49,7 +49,7 @@ public class LoginPage extends BasePage {
         return new WelcomePage(driver);
     }
 
-    public boolean isForgotPasswordButtonDisplaye() {
+    public boolean isForgotPasswordButtonDisplayed() {
         return isElementDisplayed(forgotPasswordButton);
     }
 
