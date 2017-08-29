@@ -1,9 +1,13 @@
 package pages;
 
 import helpers.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
@@ -24,11 +28,8 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login-password")
     WebElement passwordField;
 
-    @FindBy(xpath = "//form/div[5]/div/button[@type=\"submit\"]")
-    WebElement submitButton;
-
     @FindBy(css = ".btn.btn-block.btn-primary.mheight-40.text-uppercase.ng-binding")
-    WebElement submitButton1;
+    WebElement submitButton;
 
     @FindBy(xpath = "//a[@ui-sref='reminder']")
     WebElement forgotPasswordButton;
@@ -38,13 +39,11 @@ public class LoginPage extends BasePage {
 
     public WelcomePage loginToApp(String login, String password) throws InterruptedException {
         driver.get("https://my-sandbox.maxpay.com/#/signin");
-        //driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.MILLISECONDS);
         $(loginField).shouldBe(visible).click();
         $(loginField).setValue(login);
         $(passwordField).shouldBe(visible).click();
         $(passwordField).setValue(password);
         $(submitButton).shouldBe(exist).click();
-        //driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.SECONDS);
         return new WelcomePage(driver);
     }
 
@@ -52,8 +51,15 @@ public class LoginPage extends BasePage {
         return isElementDisplayed(forgotPasswordButton);
     }
 
-    public boolean isErrorMessageForIncorrectCredentialsDisplaye() {
-        return isElementDisplayed(errorIncorrectCredentials);
+    public boolean isErrorMessageForIncorrectCredentialsDisplayed() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        //WebElement element = wait.until()
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.MILLISECONDS);
+        return driver.findElement(By.xpath("//div[@data-ng-show='errorMsg']")).isDisplayed();
+        //$(errorIncorrectCredentials).shouldBe(visible);
+        //return isElementDisplayed(errorIncorrectCredentials);
+        /*driver.manage().timeouts().implicitlyWait(2, TimeUnit.MILLISECONDS);
+        return isElementDisplayed(errorIncorrectCredentials);*/
     }
 
     public String getTextFromErrorMessage() {

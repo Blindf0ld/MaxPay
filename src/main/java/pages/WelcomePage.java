@@ -18,6 +18,9 @@ public class WelcomePage extends BasePage {
     @FindBy(id = "sidebar-scroll")
     WebElement sideBar;
 
+    @FindBy(id = "setting")
+    WebElement settingsButton;
+
     @FindBy(xpath = "//a[@data-ng-click=\"logout()\"]")
     WebElement logoutButton;
 
@@ -26,6 +29,7 @@ public class WelcomePage extends BasePage {
     }
 
     public LoginPage logout() {
+        $(settingsButton).click();
         $(logoutButton).click();
         return new LoginPage(driver);
     }

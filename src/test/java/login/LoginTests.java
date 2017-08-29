@@ -7,6 +7,9 @@ import pages.LoginPage;
 import pages.WelcomePage;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.core.AnyOf.anyOf;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by pc on 27.08.2017.
@@ -30,8 +33,8 @@ public class LoginTests extends BaseTest {
     public void loginWithInvalidPassword() throws InterruptedException {
         LoginPage loginPage = new LoginPage(chrome);
         WelcomePage welcomePage = loginPage.loginToApp(validLogin, invalidPassword);
-        Assert.assertTrue(loginPage.isErrorMessageForIncorrectCredentialsDisplaye(), "No error message is displayed");
-        Assert.assertEquals(loginPage.getTextFromErrorMessage(), "Некорректны пароль или email");
+        Assert.assertTrue(loginPage.isErrorMessageForIncorrectCredentialsDisplayed(), "No error message is displayed");
+        assertThat(loginPage.getTextFromErrorMessage(), anyOf(containsString("Password or email are incorrect"), containsString("Некорректный пароль или email")));
     }
 
 
