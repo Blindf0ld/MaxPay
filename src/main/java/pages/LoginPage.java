@@ -56,10 +56,6 @@ public class LoginPage extends BasePage {
         //WebElement element = wait.until()
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.MILLISECONDS);
         return driver.findElement(By.xpath("//div[@data-ng-show='errorMsg']")).isDisplayed();
-        //$(errorIncorrectCredentials).shouldBe(visible);
-        //return isElementDisplayed(errorIncorrectCredentials);
-        /*driver.manage().timeouts().implicitlyWait(2, TimeUnit.MILLISECONDS);
-        return isElementDisplayed(errorIncorrectCredentials);*/
     }
 
     public String getTextFromErrorMessage() {

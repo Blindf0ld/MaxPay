@@ -37,9 +37,4 @@ public class BaseTest {
         }
     }
 
-    /*public static pages.WelcomePage login(){
-        chrome.get("https://my-sandbox.maxpay.com/#/signin");
-        pages.LoginPage loginPage = new pages.LoginPage(chrome);
-        return new pages.WelcomePage(chrome);
-    }*/
 }
